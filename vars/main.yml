@@ -1,0 +1,26 @@
+---
+# vars file for remove-mysql-dbs-and-users
+
+# Root password for MySQL Server
+remove_mysql_dbs_and_users_mysql_root_password: "Some secure root password"
+
+# Database to remove. Required unless "remove_mysql_dbs_and_users_use_list" is set to true.
+remove_mysql_dbs_and_users_db_name: "database-to-remove"
+
+# Database user to remove. Required unless "remove_mysql_dbs_and_users_use_list" is set to true.
+remove_mysql_dbs_and_users_db_user: "user-to-remove"
+
+# List of databases and users to remove. Not needed unless the "remove_mysql_dbs_and_users_use_list" variable is set to true. Default is false.
+remove_mysql_dbs_and_users_list_to_setup:
+  - {
+      name: 'my-db-to-create',
+      mysql_user: 'some-user'
+    }
+
+
+#####     Optional Variables      #####
+
+# Will you be passing a list of databases and/or database users to remove?
+#remove_mysql_dbs_and_users_use_list: false
+
+

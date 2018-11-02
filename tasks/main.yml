@@ -1,0 +1,39 @@
+---
+# tasks file for remove-mysql-dbs-and-users
+
+- name: "Only passing individual values"
+  block:
+
+    - name: "MYSQL | Remove MySQL Database {{ remove_mysql_dbs_and_users_db_name }}"
+      mysql_db: 
+        state: absent
+        name: "{{ remove_mysql_dbs_and_users_db_name }}" 
+      notify: "restart mysql"
+
+    - name: "MYSQL | Remove MySQL User {{ remove_mysql_dbs_and_users_db_user }}"
+      mysql_user:
+        state: absent
+        name: "{{ remove_mysql_dbs_and_users_db_user }}" 
+      notify: "restart mysql"
+
+  when: not remove_mysql_dbs_and_users_use_list
+  
+- name: "Passing a list of of values"
+  block:
+  
+    - name: "MYSQL | Remove MySQL Database {{ item.name }}"
+      mysql_db: 
+        state: absent
+        name: "{{ item.name }}" 
+      with_items: '{{ remove_mysql_dbs_and_users_list_to_setup }}'
+      notify: "restart mysql"
+
+    - name: "MYSQL | Remove MySQL User {{ item.name }}"
+      mysql_user:
+        state: absent
+        name: "{{ item.mysql_user }}" 
+      with_items: '{{ remove_mysql_dbs_and_users_list_to_setup }}'
+      notify: "restart mysql"
+
+  when: remove_mysql_dbs_and_users_use_list
+
