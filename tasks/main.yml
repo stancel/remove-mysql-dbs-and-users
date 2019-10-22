@@ -36,4 +36,3 @@
       notify: "restart mysql"
 
   when: remove_mysql_dbs_and_users_use_list
-

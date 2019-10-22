@@ -17,10 +17,7 @@ remove_mysql_dbs_and_users_list_to_setup:
       mysql_user: 'some-user'
     }
 
-
 #####     Optional Variables      #####
 
 # Will you be passing a list of databases and/or database users to remove?
 #remove_mysql_dbs_and_users_use_list: false
-
-
